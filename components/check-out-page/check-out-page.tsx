@@ -2,7 +2,6 @@ import { Form } from "react-bootstrap";
 import styles from "./check-out-page.module.css";
 import { useCartContext } from "@/contexts/use-cart-context";
 import BigNumber from "bignumber.js";
-import { WalletSelector, ConnectorButton } from "dappkit-react";
 import Connect from "../connnect/connect";
 
 export default function CheckOutPage() {
@@ -17,11 +16,6 @@ export default function CheckOutPage() {
     const currentValueAsBigNumber = new BigNumber(currentValue);
     return BigNumber(accumulator).plus(currentValueAsBigNumber);
   }, new BigNumber(0))
-
-  function connectWallet() {
-    console.log('connectWallet')
-
-  }
 
   return (
     <div className="d-flex" style={{ height: '92.1vh'}}>
