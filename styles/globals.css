@@ -1,0 +1,53 @@
+@font-face {
+  font-family: "Inter";
+  src: url("../assets/fonts/Inter.woff2") format("woff2"),
+    url("../assets/fonts/Inter.ttf") format("truetype");
+}
+
+:root {
+  --white: #ffffff;
+  --black: #141414;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+.body {
+  padding: 0 2rem;
+  height: 100%;
+  width: 100%;
+}
+
+.bg-color {
+  background: var(--bg-color);
+}
+
+.primary-color {
+  color: var(--primary-color);
+}
+
+.body.light {
+  --bg-color: #fff;
+  --primary-color: #141414;
+  background-color: #fff;
+  color: #141414;
+  border-color: #09090B1F;
+}
+
+.body.dark {
+  --bg-color: #141414;
+  --primary-color: #fff;
+  background-color: #141414;
+  color: #fff;
+  border-color: #fff;
+}
+
+.body, input, textarea, button {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+}
