@@ -5,13 +5,13 @@ import { useCartContext } from "@/contexts/use-cart-context";
 
 type ProductPageProps = {
   data: {
-    product: { title: string, image: string, currency: string, description: string },
-    variants: { size: string; price: string, image: string }[]
+    sync_product: { name: string, thumbnail_url: string, currency: string, description: string },
+    sync_variants: { size: string; price: string, image: string, product: {image: string} }[]
   }
 };
 
 export default function ProductPage({ data }: ProductPageProps) {
-  const [sizeIndex, setSizeIndex] = useState<number>(data?.variants?.length);
+  const [sizeIndex, setSizeIndex] = useState<number>(data?.sync_variants?.length);
   const { back } = useRouter();
   const context = useCartContext();
   console.log("sizeIndex", data);
@@ -27,25 +27,19 @@ export default function ProductPage({ data }: ProductPageProps) {
       </div>
       <div className={styles.product}>
         <div className={styles.productImage}>
-          {sizeIndex > 0 && (
-            <img src={data?.variants[sizeIndex - 1]?.image}
-                 alt={data?.product.title}
-                 width={619.9}
-                 height={619.9}/>
-          )}
-          <img src={data?.product?.image}
-               alt={data?.product?.title}
+          <img src={data?.sync_product?.thumbnail_url}
+               alt={data?.sync_product?.name}
                width={619.9}
                height={619.9}/>
         </div>
         <div className={styles.productDescription}>
           <div>
-            <h1>{data?.product?.title}</h1>
+            <h1>{data?.sync_product?.name}</h1>
           </div>
           <div className={styles.money}>
             <span>
-              {sizeIndex > 0 && data?.variants[sizeIndex - 1]?.price}{" "}
-              {data?.product?.currency}
+              {sizeIndex > 0 && data?.sync_variants[sizeIndex - 1]?.price}{" "}
+              {data?.sync_product?.currency}
             </span>
           </div>
 
@@ -54,7 +48,7 @@ export default function ProductPage({ data }: ProductPageProps) {
             padding: "1.5rem 1rem 1.5rem 0",
             flexWrap: "wrap",
           }}>
-            {data?.variants?.map((item: any, key: number) => (
+            {data?.sync_variants?.map((item: any, key: number) => (
               <div key={key}
                    onClick={() => setSizeIndex(key + 1)}
                    className={`${styles.cardSize} ${!isOpacity(key) ? styles.activeSize : ""}`}>
@@ -70,13 +64,13 @@ export default function ProductPage({ data }: ProductPageProps) {
             }}
           >
             <button className={styles.button}
-                    onClick={() => {context?.setCarts([...context?.carts, data?.variants[sizeIndex - 1]])}}>
+                    onClick={() => {context?.setCarts([...context?.carts, data])}}>
               Add to Cart
             </button>
           </div>
           <div className={styles.description}>
             <h3>Description</h3>
-            <span>{data?.product?.description}</span>
+            <span>{data?.sync_product?.description}</span>
           </div>
         </div>
       </div>

@@ -8,7 +8,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
   return {
     props: {
-      data: await fetchPrintful(`/products`, {method: "get"})
+      data: await fetchPrintful(`store/products`, {method: "get"})
     },
   };
 };

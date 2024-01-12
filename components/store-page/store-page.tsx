@@ -14,8 +14,8 @@ export default function StorePage({ data }: StorePageProps) {
       {data?.map((item: any) => (
         <Card key={item.id}
               id={item.id}
-              title={item.title}
-              image={item.image}
+              title={item.name}
+              image={item.thumbnail_url}
               onClick={() =>
                 push({
                   pathname: `product/[id]`,

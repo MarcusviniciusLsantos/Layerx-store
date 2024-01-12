@@ -10,7 +10,7 @@ export default function OffCanvas({ ...props }) {
   const [isOpen, setIsOpen] = useState(false);
   const context = useCartContext();
 
-  const total = context?.carts?.map((e: any) => e.price) || [0];
+  const total = context?.carts?.map((e: any) => e.sync_variants[e.sync_product.variants - 1].retail_price) || [0];
 
   const handleOpen = () => {
     setIsOpen(true);
@@ -40,6 +40,7 @@ export default function OffCanvas({ ...props }) {
       >
         Cart{count()}
       </div>
+      {JSON.stringify(context?.carts, null, 2)}
       <Offcanvas show={isOpen} onHide={handleClose} {...props}>
         <Offcanvas.Header className={style.title} closeButton>
           <Offcanvas.Title>Cart{count()}</Offcanvas.Title>
@@ -56,7 +57,7 @@ export default function OffCanvas({ ...props }) {
                 <div className={style.product} key={key}>
                   <div className="d-flex">
                     <div>
-                      <img src={item.image} width={92.06} height={92.06} />
+                      <img src={item.sync_product.thumbnail_url} width={92.06} height={92.06} />
                     </div>
                     <div
                       style={{
@@ -68,9 +69,9 @@ export default function OffCanvas({ ...props }) {
                       <span
                         style={{ opacity: "60%", padding: "0.5rem 0 0.5rem 0" }}
                       >
-                        size: {item.size}
+                        size: {item.sync_variants[item.sync_product.variants - 1].size}
                       </span>
-                      <span>{item.price}</span>
+                      <span>{item.sync_variants[item.sync_product.variants - 1].retail_price}</span>
                     </div>
                   </div>
                   <div
