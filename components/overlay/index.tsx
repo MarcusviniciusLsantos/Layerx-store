@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 
 import Offcanvas from "react-bootstrap/Offcanvas";
 
-import style from "./Overlay.module.css";
-import { useCartContext } from "../../pages/_app";
+import style from "./overlay.module.css";
+import { useCartContext } from "@/contexts/use-cart-context";
 import BigNumber from "bignumber.js";
 
 export default function OffCanvas({ ...props }) {

@@ -1,8 +1,8 @@
 import Switch from "react-switch";
-import styles from "./Header.module.css";
-import LayerxIcon from "../assets/icons/layerx-icon";
+import styles from "./header.module.css";
+import LayerxIcon from "@/assets/icons/layerx-icon";
 import Link from "next/link";
-import Cart from "./Cart";
+import Cart from "@/components/cart/cart";
 
 export default function Header({
   isSwitchChecked,

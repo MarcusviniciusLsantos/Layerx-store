@@ -1,16 +1,23 @@
 import { useState } from "react";
-import styles from "./Product-page.module.css";
+import styles from "./product-page.module.css";
 import { useRouter } from "next/router";
-import { useCartContext } from "../pages/_app";
+import { useCartContext } from "@/contexts/use-cart-context";
 
-export default function ProductPage({ data }: { data: any }) {
+type ProductPageProps = {
+  data: {
+    product: { title: string, image: string, currency: string, description: string },
+    variants: { size: string; price: string, image: string }[]
+  }
+};
+
+export default function ProductPage({ data }: ProductPageProps) {
   const [sizeIndex, setSizeIndex] = useState<number>(data?.variants?.length);
   const { back } = useRouter();
   const context = useCartContext();
   console.log("sizeIndex", data);
 
   function isOpacity(key: number) {
-    return key + 1 === sizeIndex ? false : true;
+    return key + 1 !== sizeIndex;
   }
 
   return (
@@ -21,19 +28,15 @@ export default function ProductPage({ data }: { data: any }) {
       <div className={styles.product}>
         <div className={styles.productImage}>
           {sizeIndex > 0 && (
-            <img
-              src={data?.variants[sizeIndex - 1]?.image}
-              alt={data?.product.title}
-              width={619.9}
-              height={619.9}
-            />
+            <img src={data?.variants[sizeIndex - 1]?.image}
+                 alt={data?.product.title}
+                 width={619.9}
+                 height={619.9}/>
           )}
-          <img
-            src={data?.product?.image}
-            alt={data?.product?.title}
-            width={619.9}
-            height={619.9}
-          />
+          <img src={data?.product?.image}
+               alt={data?.product?.title}
+               width={619.9}
+               height={619.9}/>
         </div>
         <div className={styles.productDescription}>
           <div>
@@ -46,19 +49,15 @@ export default function ProductPage({ data }: { data: any }) {
             </span>
           </div>
 
-          <div
-            style={{
-              display: "flex",
-              padding: "1.5rem 1rem 1.5rem 0",
-              flexWrap: "wrap",
-            }}
-          >
+          <div style={{
+            display: "flex",
+            padding: "1.5rem 1rem 1.5rem 0",
+            flexWrap: "wrap",
+          }}>
             {data?.variants?.map((item: any, key: number) => (
-              <div
-                key={key}
-                onClick={() => setSizeIndex(key + 1)}
-                className={`${styles.cardSize} ${!isOpacity(key) ? styles.activeSize : ""}`}
-              >
+              <div key={key}
+                   onClick={() => setSizeIndex(key + 1)}
+                   className={`${styles.cardSize} ${!isOpacity(key) ? styles.activeSize : ""}`}>
                 <h2>{item.size}</h2>
               </div>
             ))}
@@ -70,9 +69,10 @@ export default function ProductPage({ data }: { data: any }) {
               justifyContent: "center",
             }}
           >
-            <button className={styles.button} onClick={() => {
-              context?.setCarts([...context?.carts, data?.variants[sizeIndex - 1]])
-            }}>Add to Cart</button>
+            <button className={styles.button}
+                    onClick={() => {context?.setCarts([...context?.carts, data?.variants[sizeIndex - 1]])}}>
+              Add to Cart
+            </button>
           </div>
           <div className={styles.description}>
             <h3>Description</h3>
