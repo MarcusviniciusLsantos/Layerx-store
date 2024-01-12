@@ -26,6 +26,7 @@ export default function OffCanvas({ ...props }) {
 
   useEffect(() => {
     if (context?.carts?.length || 0 > 0) setIsOpen(true);
+    if (context?.carts?.length === 0) setIsOpen(false);
   }, [context?.carts]);
 
   return (
