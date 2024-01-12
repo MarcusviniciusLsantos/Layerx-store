@@ -57,7 +57,7 @@ export default function ProductPage({ data }: { data: any }) {
               <div
                 key={key}
                 onClick={() => setSizeIndex(key + 1)}
-                className={`${styles.cardSize} ${isOpacity(key) ? styles.activeSize : ""}`}
+                className={`${styles.cardSize} ${!isOpacity(key) ? styles.activeSize : ""}`}
               >
                 <h2>{item.size}</h2>
               </div>

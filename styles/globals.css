@@ -30,7 +30,9 @@
   color: var(--primary-color);
 }
 
+
 .body.light {
+  --bd-color: rgba(9, 9, 11, 0.12);
   --bg-color: #fff;
   --primary-color: #141414;
   background-color: #fff;
@@ -39,6 +41,7 @@
 }
 
 .body.dark {
+  --bd-color: rgba(255, 255, 255, 0.12);
   --bg-color: #141414;
   --primary-color: #fff;
   background-color: #141414;
