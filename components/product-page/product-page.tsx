@@ -46,14 +46,6 @@ export default function ProductPage({ data }: ProductPageProps) {
             width={619.9}
             height={619.9}
           />
-          {data?.sync_variants?.length > 0 && (
-            <img
-              src={data?.sync_variants[sizeIndex - 1]?.product?.image}
-              alt={data?.sync_product?.name}
-              width={619.9}
-              height={619.9}
-            />
-          )}
         </div>
         <div className={styles.productDescription}>
           <div>
