@@ -15,7 +15,6 @@ export default function Store({ data }: StorePageProps) {
         <Card
           key={item.id}
           id={item.id}
-          value={item.currency}
           title={item.title}
           image={item.image}
           onClick={() =>
