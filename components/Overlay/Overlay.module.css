@@ -1,0 +1,36 @@
+ 
+
+.title {
+    margin: 0 1rem 1rem 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid;
+}
+
+.product {
+  display: flex;
+  justify-content: space-between !important;
+  width: 100%;
+  padding-bottom: 2rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid;
+}
+
+.button {
+    display: flex;
+    height: 3rem !important;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    align-self: stretch; 
+    background-color: var(--primary-color) !important; 
+    color: var(--bg-color) !important; 
+    cursor: pointer;
+    border: 1px solid;
+}
+
+.button:hover { 
+    background-color: var(--bg-color); 
+    color: var(--primary-color); 
+}

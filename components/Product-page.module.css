@@ -1,0 +1,88 @@
+.product {
+    border-top: solid 1px;
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0 0 0;
+    padding: 0 5rem;
+}
+
+.productImage {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 4rem 1rem ;
+}
+
+.productImage > img {
+    margin-bottom: 1rem;
+}
+
+.productDescription {
+    display: flex;
+    flex-direction: column;
+    margin: 2.5rem 0 1rem 0;
+}
+
+.money {
+    margin: 1rem 0 0 0;
+    padding: 0 0 1.5rem 0;
+    opacity: 60%;
+    border-bottom: 1px solid;
+}
+
+.activeSize {
+    opacity: 12%;
+}
+
+.description {
+    border-bottom: 1px solid;
+    padding-bottom: 1rem;
+}
+
+.description h3 {
+    padding-bottom: 1rem;
+}
+
+.description > span {
+    opacity: 60%;
+}
+
+.button {
+    display: flex;
+    height: 3rem;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    align-self: stretch; 
+    background-color: var(--primary-color); 
+    color: var(--bg-color); 
+    cursor: pointer;
+    border: 1px solid;
+}
+
+.button:hover { 
+    background-color: var(--bg-color); 
+    color: var(--primary-color); 
+}
+
+.back {
+    display: flex;
+    justify-content: start;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+
+.back:hover {
+    opacity: 80%;
+}
+
+.cardSize {
+    border: 1px solid;
+    padding: 1rem;
+    margin: 1rem 1rem 1rem 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    min-width: 64px;
+}
