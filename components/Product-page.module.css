@@ -1,5 +1,5 @@
 .product {
-    border-top: solid 1px;
+    border-top: 1px solid var(--bd-color);
     display: flex;
     justify-content: center;
     margin: 1rem 0 0 0;
@@ -26,15 +26,15 @@
     margin: 1rem 0 0 0;
     padding: 0 0 1.5rem 0;
     opacity: 60%;
-    border-bottom: 1px solid;
+    border-bottom: 1px solid var(--bd-color);
 }
 
 .activeSize {
-    opacity: 12%;
+    border: 1px solid var(--primary-color) !important;
 }
 
 .description {
-    border-bottom: 1px solid;
+    border-bottom: 1px solid var(--bd-color);
     padding-bottom: 1rem;
 }
 
@@ -58,7 +58,7 @@
     background-color: var(--primary-color); 
     color: var(--bg-color); 
     cursor: pointer;
-    border: 1px solid;
+    border: 1px solid var(--bd-color);
 }
 
 .button:hover { 
@@ -78,7 +78,7 @@
 }
 
 .cardSize {
-    border: 1px solid;
+    border: 1px solid var(--bd-color);
     padding: 1rem;
     margin: 1rem 1rem 1rem 0;
     cursor: pointer;
