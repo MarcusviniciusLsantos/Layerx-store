@@ -6,7 +6,7 @@ import { useCartContext } from "@/contexts/use-cart-context";
 type ProductPageProps = {
   data: {
     sync_product: { name: string, thumbnail_url: string, currency: string, description: string },
-    sync_variants: { size: string; price: string, image: string, product: {image: string} }[]
+    sync_variants: { size: string; retail_price: string, image: string, product: {image: string} }[]
   }
 };
 
@@ -38,7 +38,7 @@ export default function ProductPage({ data }: ProductPageProps) {
           </div>
           <div className={styles.money}>
             <span>
-              {sizeIndex > 0 && data?.sync_variants[sizeIndex - 1]?.price}{" "}
+              {sizeIndex > 0 && data?.sync_variants[sizeIndex - 1]?.retail_price}{" "}
               {data?.sync_product?.currency}
             </span>
           </div>
@@ -64,7 +64,7 @@ export default function ProductPage({ data }: ProductPageProps) {
             }}
           >
             <button className={styles.button}
-                    onClick={() => {context?.setCarts([...context?.carts, data])}}>
+                    onClick={() => {context?.setCarts([...context?.carts, {...data, sizeIndex}])}}>
               Add to Cart
             </button>
           </div>

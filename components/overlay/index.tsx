@@ -68,9 +68,9 @@ export default function OffCanvas({ ...props }) {
                       <span
                         style={{ opacity: "60%", padding: "0.5rem 0 0.5rem 0" }}
                       >
-                        size: {item.sync_variants[item.sync_product.variants - 1].size}
+                        size: {item.sync_variants[item.sizeIndex - 1].size}
                       </span>
-                      <span>{item.sync_variants[item.sync_product.variants - 1].retail_price}</span>
+                      <span>{item.sync_variants[item.sizeIndex - 1].retail_price}</span>
                     </div>
                   </div>
                   <div
