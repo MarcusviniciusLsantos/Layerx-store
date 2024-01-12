@@ -40,7 +40,6 @@ export default function OffCanvas({ ...props }) {
       >
         Cart{count()}
       </div>
-      {JSON.stringify(context?.carts, null, 2)}
       <Offcanvas show={isOpen} onHide={handleClose} {...props}>
         <Offcanvas.Header className={style.title} closeButton>
           <Offcanvas.Title>Cart{count()}</Offcanvas.Title>
