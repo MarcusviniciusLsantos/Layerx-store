@@ -1,0 +1,21 @@
+.button {
+    display: flex;
+    height: 3rem !important;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    align-self: stretch; 
+    background-color: var(--primary-color) !important; 
+    color: var(--bg-color) !important; 
+    cursor: pointer;
+    border: 1px solid;
+    border-radius: 6px;
+    margin: 0.5rem 0 0.5rem 0;
+}
+
+.button:hover { 
+    background-color: var(--bg-color) !important; 
+    color: var(--primary-color) !important; 
+}

@@ -5,9 +5,11 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import style from "./overlay.module.css";
 import { useCartContext } from "@/contexts/use-cart-context";
 import BigNumber from "bignumber.js";
+import { useRouter } from "next/router";
 
 export default function OffCanvas({ ...props }) {
   const [isOpen, setIsOpen] = useState(false);
+  const {push} = useRouter();
   const context = useCartContext();
 
   const total = context?.carts?.map((e: any) => e.sync_variants[e.sync_product.variants - 1].retail_price) || [0];
@@ -95,7 +97,7 @@ export default function OffCanvas({ ...props }) {
                 }, new BigNumber(0))?.toString()}
               </span>
             </div>
-            <button className={style.button}>Check out</button>
+            <button className={style.button} onClick={() => push('/checkout')}>Check out</button>
           </div>
         </Offcanvas.Body>
       </Offcanvas>
