@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 
 import Offcanvas from "react-bootstrap/Offcanvas";
 
-import style from "./Overlay.module.css";
-import { useCartContext } from "../../pages/_app";
+import style from "./overlay.module.css";
+import { useCartContext } from "@/contexts/use-cart-context";
 import BigNumber from "bignumber.js";
 
 export default function OffCanvas({ ...props }) {
   const [isOpen, setIsOpen] = useState(false);
   const context = useCartContext();
 
-  const total = context?.carts?.map((e: any) => e.price) || [0];
+  const total = context?.carts?.map((e: any) => e.sync_variants[e.sync_product.variants - 1].retail_price) || [0];
 
   const handleOpen = () => {
     setIsOpen(true);
@@ -56,7 +56,7 @@ export default function OffCanvas({ ...props }) {
                 <div className={style.product} key={key}>
                   <div className="d-flex">
                     <div>
-                      <img src={item.image} width={92.06} height={92.06} />
+                      <img src={item.sync_product.thumbnail_url} width={92.06} height={92.06} />
                     </div>
                     <div
                       style={{
@@ -68,9 +68,9 @@ export default function OffCanvas({ ...props }) {
                       <span
                         style={{ opacity: "60%", padding: "0.5rem 0 0.5rem 0" }}
                       >
-                        size: {item.size}
+                        size: {item.sync_variants[item.sizeIndex - 1].size}
                       </span>
-                      <span>{item.price}</span>
+                      <span>{item.sync_variants[item.sizeIndex - 1].retail_price}</span>
                     </div>
                   </div>
                   <div

@@ -63,7 +63,13 @@
 
 .button:hover { 
     background-color: var(--bg-color); 
-    color: var(--primary-color); 
+    color: var(--primary-color);
+}
+
+.button[disabled] {
+    background-color: lightgray;
+    color: white;
+    cursor: not-allowed!important;
 }
 
 .back {
@@ -85,4 +91,5 @@
     display: flex;
     justify-content: center;
     min-width: 64px;
+    background-color: white;
 }
