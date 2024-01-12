@@ -6,13 +6,16 @@ import style from "./overlay.module.css";
 import { useCartContext } from "@/contexts/use-cart-context";
 import BigNumber from "bignumber.js";
 import { useRouter } from "next/router";
+import { beproPrice } from "@/constants/bepro-price";
 
 export default function OffCanvas({ ...props }) {
   const [isOpen, setIsOpen] = useState(false);
-  const {push} = useRouter();
+  const { push } = useRouter();
   const context = useCartContext();
 
-  const total = context?.carts?.map((e: any) => e.sync_variants[e.sync_product.variants - 1].retail_price) || [0];
+  const total = context?.carts?.map(
+    (e: any) => e.sync_variants[e.sync_product.variants - 1].retail_price
+  ) || [0];
 
   const handleOpen = () => {
     setIsOpen(true);
@@ -58,7 +61,11 @@ export default function OffCanvas({ ...props }) {
                 <div className={style.product} key={key}>
                   <div className="d-flex">
                     <div>
-                      <img src={item.sync_product.thumbnail_url} width={92.06} height={92.06} />
+                      <img
+                        src={item.sync_product.thumbnail_url}
+                        width={92.06}
+                        height={92.06}
+                      />
                     </div>
                     <div
                       style={{
@@ -72,7 +79,16 @@ export default function OffCanvas({ ...props }) {
                       >
                         size: {item.sync_variants[item.sizeIndex - 1].size}
                       </span>
-                      <span>{item.sync_variants[item.sizeIndex - 1].retail_price}</span>
+                      <span>
+                        {" "}
+                        {BigNumber(
+                          item.sync_variants[item.sizeIndex - 1].retail_price
+                        )
+                          .dividedBy(BigNumber(beproPrice))
+                          .toFixed(2)
+                          ?.toString()}{" "}
+                        BEPRO
+                      </span>
                     </div>
                   </div>
                   <div
@@ -80,7 +96,9 @@ export default function OffCanvas({ ...props }) {
                       cursor: "pointer",
                     }}
                     onClick={() => {
-                        context?.setCarts(context?.carts?.filter((e: any) => e?.id !== item.id))
+                      context?.setCarts(
+                        context?.carts?.filter((e: any) => e?.id !== item.id)
+                      );
                     }}
                   >
                     X
@@ -91,16 +109,25 @@ export default function OffCanvas({ ...props }) {
             <div className="d-flex justify-content-between pb-3">
               <span>SubTotal</span>
               <span>
-                {total?.reduce((accumulator, currentValue) => {
-                  const currentValueAsBigNumber = new BigNumber(currentValue);
-                  return BigNumber(accumulator).plus(currentValueAsBigNumber);
-                }, new BigNumber(0))?.toString()}
+                {total
+                  ?.reduce((accumulator, currentValue) => {
+                    const currentValueAsBigNumber = new BigNumber(currentValue);
+                    return BigNumber(accumulator).plus(currentValueAsBigNumber);
+                  }, new BigNumber(0))
+                  ?.dividedBy(BigNumber(beproPrice))
+                  .toFixed(2)
+                  ?.toString()} BEPRO
               </span>
             </div>
-            <button className={style.button} onClick={() => {
-              push('/checkout')
-              setIsOpen(false)
-            }}>Check out</button>
+            <button
+              className={style.button}
+              onClick={() => {
+                push("/checkout");
+                setIsOpen(false);
+              }}
+            >
+              Check out
+            </button>
           </div>
         </Offcanvas.Body>
       </Offcanvas>

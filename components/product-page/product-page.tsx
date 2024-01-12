@@ -2,6 +2,8 @@ import { useState } from "react";
 import styles from "./product-page.module.css";
 import { useRouter } from "next/router";
 import { useCartContext } from "@/contexts/use-cart-context";
+import { beproPrice } from "@/constants/bepro-price";
+import BigNumber from "bignumber.js";
 
 type ProductPageProps = {
   data: {
@@ -54,8 +56,11 @@ export default function ProductPage({ data }: ProductPageProps) {
           <div className={styles.money}>
             <span>
               {sizeIndex > 0 &&
-                data?.sync_variants[sizeIndex - 1]?.retail_price}{" "}
-              {data?.sync_product?.currency}
+                BigNumber(data.sync_variants[sizeIndex - 1].retail_price)
+                  .dividedBy(BigNumber(beproPrice))
+                  .toFixed(2)
+                  ?.toString()}{" "}
+              BEPRO
             </span>
           </div>
 
