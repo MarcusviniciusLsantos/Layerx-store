@@ -97,7 +97,10 @@ export default function OffCanvas({ ...props }) {
                 }, new BigNumber(0))?.toString()}
               </span>
             </div>
-            <button className={style.button} onClick={() => push('/checkout')}>Check out</button>
+            <button className={style.button} onClick={() => {
+              push('/checkout')
+              setIsOpen(false)
+            }}>Check out</button>
           </div>
         </Offcanvas.Body>
       </Offcanvas>
