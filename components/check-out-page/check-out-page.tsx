@@ -2,9 +2,12 @@ import { Form } from "react-bootstrap";
 import styles from "./check-out-page.module.css";
 import { useCartContext } from "@/contexts/use-cart-context";
 import BigNumber from "bignumber.js";
+import { WalletSelector, ConnectorButton } from "dappkit-react";
+import Connect from "../connnect/connect";
 
 export default function CheckOutPage() {
   const context = useCartContext();
+
 
   const total = context?.carts?.map(
     (e: any) => e.sync_variants[e.sync_product.variants - 1].retail_price
@@ -14,6 +17,11 @@ export default function CheckOutPage() {
     const currentValueAsBigNumber = new BigNumber(currentValue);
     return BigNumber(accumulator).plus(currentValueAsBigNumber);
   }, new BigNumber(0))
+
+  function connectWallet() {
+    console.log('connectWallet')
+
+  }
 
   return (
     <div className="d-flex" style={{ height: '92.1vh'}}>
@@ -61,7 +69,8 @@ export default function CheckOutPage() {
         />
 
         <h4>Payment</h4>
-        <button className={styles.button}>Connect Wallet</button>
+        <Connect />
+
         <button className={styles.button}>Check out</button>
       </div>
       <div className={`d-flex flex-column col-6 p-4 ${styles.cart}`}>
@@ -69,7 +78,6 @@ export default function CheckOutPage() {
           context?.carts?.map((item: any, key: number) => (
             <div className="d-flex justify-content-between align-items-center" key={key}>
               <div className="my-4">
-
                 <img
                   src={item.sync_product.thumbnail_url}
                   width={92.06}
