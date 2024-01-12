@@ -6,7 +6,7 @@ import { useCartContext } from "@/contexts/use-cart-context";
 type ProductPageProps = {
   data: {
     sync_product: { name: string, thumbnail_url: string, currency: string, description: string },
-    sync_variants: { size: string; retail_price: string, image: string, product: {image: string} }[]
+    sync_variants: { availability_status: string; size: string; retail_price: string, image: string, product: {image: string} }[]
   }
 };
 
@@ -49,11 +49,12 @@ export default function ProductPage({ data }: ProductPageProps) {
             flexWrap: "wrap",
           }}>
             {data?.sync_variants?.map((item: any, key: number) => (
-              <div key={key}
-                   onClick={() => setSizeIndex(key + 1)}
-                   className={`${styles.cardSize} ${!isOpacity(key) ? styles.activeSize : ""}`}>
+              <button key={key}
+                      disabled={item.availability_status !== "active"}
+                      onClick={() => setSizeIndex(key + 1)}
+                      className={`${styles.cardSize} ${!isOpacity(key) ? styles.activeSize : ""}`}>
                 <h2>{item.size}</h2>
-              </div>
+              </button>
             ))}
           </div>
           <div
@@ -64,6 +65,7 @@ export default function ProductPage({ data }: ProductPageProps) {
             }}
           >
             <button className={styles.button}
+                    disabled={data.sync_variants[sizeIndex - 1]?.availability_status !== "active"}
                     onClick={() => {context?.setCarts([...context?.carts, {...data, sizeIndex}])}}>
               Add to Cart
             </button>
