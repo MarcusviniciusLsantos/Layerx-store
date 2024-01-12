@@ -64,7 +64,7 @@ export default function CheckOutPage() {
         <button className={styles.button}>Connect Wallet</button>
         <button className={styles.button}>Check out</button>
       </div>
-      <div className="d-flex flex-column col-6 p-4">
+      <div className={`d-flex flex-column col-6 p-4 ${styles.cart}`}>
         {context?.carts &&
           context?.carts?.map((item: any, key: number) => (
             <div className="d-flex justify-content-between align-items-center" key={key}>
