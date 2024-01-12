@@ -1,4 +1,4 @@
-import OffCanvas from "./Overlay";
+import OffCanvas from "@/components/overlay";
 
 export default function Cart() {
     return (
